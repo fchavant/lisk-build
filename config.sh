@@ -28,10 +28,10 @@ NODE_URL="https://nodejs.org/download/release/$NODE_VERSION/$NODE_FILE"
 NODE_OUT="compiled"
 NODE_CONFIG=""
 
-POSTGRESQL_VERSION="9.6.4"
+POSTGRESQL_VERSION="10.0"
 POSTGRESQL_DIR="postgresql-$POSTGRESQL_VERSION"
 POSTGRESQL_FILE="$POSTGRESQL_DIR.tar.gz"
-POSTGRESQL_URL="https://ftp.postgresql.org/pub/source/v9.6.4/$POSTGRESQL_FILE"
+POSTGRESQL_URL="https://ftp.postgresql.org/pub/source/v$POSTGRESQL_VERSION/$POSTGRESQL_FILE"
 POSTGRESQL_OUT="pgsql"
 
 SODIUM_DIR="libsodium-1.0.11"
@@ -62,11 +62,13 @@ JQ_DIR="jq-$JQ_VERSION"
 JQ_FILE="$JQ_DIR.tar.gz"
 JQ_URL="https://github.com/stedolan/jq/releases/download/jq-$JQ_VERSION/$JQ_FILE"
 JQ_OUT="jq"
+JQ_CONFIG=""
 
 NPM_CLI="lib/node_modules/npm/bin/npm-cli.js"
 
 if [ "$(uname -s)" == "Darwin" ]; then
 	SHA_CMD="shasum -a 256"
+	JQ_CONFIG='LDFLAGS="-L/usr/local/opt/bison/lib" --disable-maintainer-mode' 
 else
 	SHA_CMD="sha256sum"
 fi

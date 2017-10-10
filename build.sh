@@ -115,7 +115,7 @@ if [ ! -f "$SRC_DIR/$JQ_DIR/$JQ_OUT" ]; then
 	exec_cmd "rm -rf $SRC_DIR/$JQ_DIR"
 	exec_cmd "tar -zxf $SRC_DIR/$JQ_FILE"
 	cd "$SRC_DIR/$JQ_DIR" || exit 2
-	exec_cmd "./configure"
+	exec_cmd "./configure $JQ_CONFIG"
 	exec_cmd "make"
 	cd "$SRC_DIR" || exit 2
 fi
@@ -127,7 +127,7 @@ cd "$SRC_DIR" || exit 2
 if [ ! -f "$NODE_FILE" ]; then
 	exec_cmd "wget $NODE_URL -O $NODE_FILE"
 fi
-if [ ! -f "$NODE_DIR/$NODE_OUT/bin/node" ] || [ ! -f "$NODE_DIR/$NODE_OUT/bin/npm" ]; then
+if [ ! -f "$SRC_DIR/$NODE_DIR/$NODE_OUT/bin/node" ] || [ ! -f "$SRC_DIR/$NODE_DIR/$NODE_OUT/bin/npm" ]; then
 	exec_cmd "rm -rf $SRC_DIR/$NODE_DIR"
 	exec_cmd "tar -zxf $SRC_DIR/$NODE_FILE"
 	cd "$SRC_DIR/$NODE_DIR" || exit 2
@@ -164,7 +164,10 @@ exec_cmd "mkdir -p $SRC_DIR/$BUILD_NAME/node"
 exec_cmd "cp -R $SRC_DIR/$NODE_DIR/$NODE_OUT/* $SRC_DIR/$BUILD_NAME/node"
 
 # Copy Libpq for use
-exec_cmd "sudo cp -v $SRC_DIR/$BUILD_NAME/pgsql/lib/libpq.* /usr/lib"
+#exec_cmd "sudo cp -vf $SRC_DIR/$BUILD_NAME/pgsql/lib/libpq.* /usr/lib"
+
+# Make log dir for future use in Full Installing
+exec_cmd "mkdir -p $SRC_DIR/$BUILD_NAME/logs"
 
 # Copy libreadline7 and create symbolic links
 if [ ! "$(uname -s)" == "Darwin" ]; then
