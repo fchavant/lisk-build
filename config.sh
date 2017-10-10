@@ -21,10 +21,10 @@ LISK_TEST_FILE="$TEST_VERSION.tar.gz"
 LISK_TEST_URL="https://downloads.lisk.io/lisk/test/$TEST_VERSION/$LISK_TEST_FILE"
 LISK_TEST_CONFIG=""
 
-NODE_VERSION="v6.11.2"
+NODE_VERSION="v8.6.0"
 NODE_DIR="node-$NODE_VERSION"
 NODE_FILE="$NODE_DIR.tar.gz"
-NODE_URL="https://nodejs.org/download/release/v6.11.2/$NODE_FILE"
+NODE_URL="https://nodejs.org/download/release/$NODE_VERSION/$NODE_FILE"
 NODE_OUT="compiled"
 NODE_CONFIG=""
 

@@ -129,7 +129,7 @@ if [ ! -f "$NODE_FILE" ]; then
 fi
 if [ ! -f "$NODE_DIR/$NODE_OUT/bin/node" ] || [ ! -f "$NODE_DIR/$NODE_OUT/bin/npm" ]; then
 	exec_cmd "rm -rf $SRC_DIR/$NODE_DIR"
-	exec_cmd "tar -zxvf $SRC_DIR/$NODE_FILE"
+	exec_cmd "tar -zxf $SRC_DIR/$NODE_FILE"
 	cd "$SRC_DIR/$NODE_DIR" || exit 2
 	apply_patches "node"
 	exec_cmd "./configure --prefix=$(pwd)/compiled $NODE_CONFIG"
